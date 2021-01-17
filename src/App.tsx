@@ -1,24 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+
+import { IRecord } from './types/RecordType'
+import NavigationBar from './components/layout/NavigationBar'
+import CalculatorContainer from './pages/CalculatorContainer'
+import ReportContainer from './pages/ReportContainer'
+
+export enum Pages {
+  Calculator = 'Calculator',
+  Report = 'Report'
+}
 
 function App() {
+
+  const [page, setPage] = useState(Pages.Calculator) // default page set to "Calculator"
+
+  const [history, setHistory] = useState<IRecord[]>([])
+
+  const addRecord = (record: IRecord) => {
+    setHistory(history.concat(record))
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavigationBar title={page} setPage={setPage} />
+      {page === Pages.Calculator && <CalculatorContainer addRecord={addRecord} />}
+      {page === Pages.Report && <ReportContainer records={history} />}
     </div>
   );
 }

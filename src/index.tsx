@@ -1,12 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { unstable_createMuiStrictModeTheme as createMuiTheme } from '@material-ui/core';
+import './index.css'
+import { ThemeProvider } from '@material-ui/core';
+
+const theme = createMuiTheme();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

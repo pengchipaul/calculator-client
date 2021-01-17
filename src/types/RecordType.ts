@@ -1,4 +1,4 @@
 export interface IRecord {
   equation: String;
-  timestamp: Date;
+  createdAt: Date;
 }

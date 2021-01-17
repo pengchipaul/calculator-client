@@ -242,7 +242,7 @@ function CalculatorContainer(props: CalculatorContainerProps) {
     var resultRecord = getResult(result)
     var record: IRecord = {
       equation: resultRecord,
-      timestamp: new Date()
+      createdAt: new Date()
     }
     props.addRecord(record)
     setSuccess(true)
